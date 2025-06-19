@@ -401,7 +401,7 @@ CUSTOMER_RECIPES:fsl-bsp-release += 'imx-seco'
 CUSTOMER_RECIPES:freescale-layer += 'imx-m4-demos'
 CUSTOMER_RECIPES:fsl-bsp-release += 'imx-boot'
 PREFERRED_VERSION_imx-m4-demos:mx8qm-nxp-bsp = "2.9.0"
-PREFERRED_VERSION_imx-seco:mx8 = "5.9.2"
+PREFERRED_VERSION_imx-seco:mx8 = "5.9.4.1"
 IMX_SOC_REV_LOWER = "b0"
 
 UBOOT_CONFIG ??= "mx8qmmek"
