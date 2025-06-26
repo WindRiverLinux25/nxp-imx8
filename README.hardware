@@ -1,4 +1,4 @@
-i.MX8QM/i.MX8MQ/i.MX8MP Board Support Package
+i.MX8QM Board Support Package
 
 
 Table of Contents
@@ -16,10 +16,6 @@ This BSP supports the following boards:
 
    + MCIMX8QM-MEK : Board: MCIMX8QM-MEK SCH-29420 REV C2, 700-29420 REV C2.
 			 CPU: NXP i.MX8QM RevB A53 at 1200 MHz at 27C
-   + MCIMX8MQ-EVK : Board: MCIMX8M-EVK SCH-29615 REV B3, 700-29615 REV X6.
-			 CPU: Freescale i.MX8MQ rev2.0 1500 MHz
-   + MCIMX8MP-EVK : Board: MCIMX8MP-EVK SCH-46370 REV B1, 700-46370 REV B1
-			 CPU:   i.MX8MP[8] rev1.1 1800 MHz
 
 2. Change History
 =================
@@ -46,8 +42,7 @@ The following BSP features are validated and supported.
 
   o Network
 	+ Ethernet: FEC 10/100/1000 MAC ethernet controller, Qualcomm AR8031 external PHY
-	+ Ethernet: DWMAC(i.MX8MP)
-	+ FLEXCAN: Flexible controller area network(only MCIMX8QM-MEK)
+	+ FLEXCAN: Flexible controller area network
 
   o USB
 	+ USB OTG Type C: On-Chip UTMI transceiver, high/full/low speed
@@ -55,27 +50,21 @@ The following BSP features are validated and supported.
 
   o Storage
 	+ eMMC: On-chip 32GB  MTFC32GAKAEEF-AIT
-	+ eMMC: On-chip 32GB  SDINBDG4-32G-I1 (MCIMX8MP-EVK)
-	+ NOR flash: 32 MB MT25QU256ABA1 SPI NOR Flash (MCIMX8MP-EVK)
-	+ NOR Flash: 32MB MT25QL256ABA1EW9 SPI NOR Flash (MCIMX8MQ-EVK)
 
   o Multimedia
 	+ SAI Audio:
-		+ WM8960 codec (MCIMX8QM-MEK & MCIMX8MP-EVK)
-		+ WM8524 codec (MCIMX8MQ-EVK)
+		+ WM8960 codec
 	+ HDMI: On-Chip HDMI controller
 	+ DCSS: Display controller subsystem
 	+ MIPI DSI Host Controller:
 		+ Raydium RM67191 FHD panel (MX8-DSI-OLED1 accessory card)
 	+ MIPI CSI Host Controller:
 		+ OmniVision chipset OV5640 (MINISASTOCSI accessory card)
-	+ GPU: Vivante GC7000 Lite
-        + VPU: On-Chip video processing unit (MCIMX8M-EVK & MCIMX8MP-EVK)
-	+ ISP: ISP8000Nano (MCIMX8MP-EVK)
-	+ NPU: Vivante VIP8000 NPU (MCIMX8MP-EVK)
+	+ GPU: Vivante dual-GC7000XSVX
+	+ VPU: On-Chip video processing unit (Amphion)
 
-Note: GPU, NPU, VPU all require proprietary packages or firmware
-to work. If you want to use them, please refer to README.proprietary
+Note: GPU, VPU require proprietary packages or firmware to work.
+      If you want to use them, please refer to README.proprietary
 
   o Power Mgmt
 	+ CPU Freq
@@ -103,9 +92,6 @@ The following features are not supported and not validated:
 	x SPDIF
 	x PWM
 	x eLCDIF
-	x XCVR codec (MCIMX8MP-EVK)
-	x BT_SCO codec (MCIMX8MP-EVK)
-
 
 4. BSP Notes
 ============
@@ -122,20 +108,6 @@ MCIMX8QM-MEK:
 	Board Revision:        MCIMX8QM-MEK SCH-29420 REV C2, 700-29420 REV C2
 	BootLoader:            U-Boot
 	BootLoader Version:    U-Boot 2023.04+gf8a2983ec83+p0
-
-MCIMX8MQ-EVK:
-	Processor:             IMX8MQ
-	CPU Revision:          rev2.0
-	Board Revision:        MCIMX8MQ-EVK SCH-29615 REV B3, 700-29615 REV X6
-	BootLoader:            U-Boot
-	BootLoader Version:    U-Boot 2023.04+gf8a2983ec83+p0
-
-MCIMX8MP-EVK:
-	 Processor:             IMX8MP
-	 CPU Revision:          rev1.1
-	 Board Revision:        MCIMX8M-EVK SCH-46370 REV B1, 700-46370 REV B1
-	 BootLoader:            U-Boot
-	 BootLoader Version:    U-Boot 2024.04-lf_v2024.04+gde16f4f1+p0
 
 4.2 Specify boot medium
 -----------------------
@@ -156,37 +128,3 @@ The following table shows the boot switch settings to boot from eMMC MTFC16GAKAE
 
 Switch  D1      D2      D3      D4      D5      D6
 SW2     OFF     OFF     OFF     ON      OFF     OFF
-
-4.2.2 MCIMX8MQ-EVK (SCH-29615 REV B3, 700-29615 REV X6)
-------------------------------------------------------
-
-1. Booting from SD card
-
-The following table shows the boot switch setup for SD2 boot
-
-Switch  D1      D2      D3      D4
-SW801   ON      ON      OFF     OFF
-
-2. Booting from eMMC
-
-The following table shows the boot switch settings to boot from eMMC MTFC16GAKAECN-2M.
-
-Switch  D1      D2      D3      D4
-SW801   OFF     OFF     ON      OFF
-
-4.2.3 MCIMX8MP-EVK (SCH-46370 REV B1, 700-46370 REV B1)
--------------------------------------------------------
-
-1. Booting from SD card
-
-The following table shows the boot switch setup for SD2 boot
-
-Switch  D1      D2      D3      D4
-SW4     OFF     OFF     ON      ON
-
-2. Booting from eMMC
-
-The following table shows the boot switch settings to boot from eMMC MTFC16GAKAECN-2M.
-
-Switch  D1      D2      D3      D4
-SW4     OFF     OFF     ON      OFF
