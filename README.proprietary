@@ -222,6 +222,7 @@ CUSTOMER_RECIPES:meta-python += 'python3-sympy'
 CUSTOMER_RECIPES:meta-python += 'python3-coloredlogs'
 CUSTOMER_RECIPES:meta-python += 'python3-humanfriendly'
 PREFERRED_VERSION_tensorflow-lite:mx8 = "2.18.0"
+PREFERRED_VERSION_flatbuffers:mx8 = "24.3.25"
 
 3.3 Use the command as below to build a xwayland image:
 -------------------------------------------------------
