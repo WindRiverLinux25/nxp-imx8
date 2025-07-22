@@ -177,7 +177,7 @@ Please use dtbs that support CSI, just like imx8qm-mek-ov5640-csi0.dtb.
 Before using the VPU, we need to configure the media pipeline with media-ctl.
 You can use the following script on target for quick setup.
 
-$ cat << EOF > ov5640_csi0.sh
+$ cat << 'EOF' > ov5640_csi0.sh
 #!/bin/sh -x
 
 MDEV=${1:-1}
@@ -207,7 +207,16 @@ EOF
     Note: Please refer to the '5. VPU firmware(MX8QM)' section to add the firmware.
 
     v4l2h264enc:
-	gst-launch-1.0 v4l2src device=/dev/video3 num-buffers=300 ! video/x-raw,format=NV12,width=1920,height=1080,framerate=30/1 ! v4l2h264enc ! h264parse ! avimux ! filesink location=output.yuv
+	gst-launch-1.0 v4l2src device=/dev/<capture device> num-buffers=300 ! video/x-raw,format=NV12,width=1920,height=1080,framerate=30/1 ! v4l2h264enc ! h264parse ! avimux ! filesink location=output.yuv
+
+	You can find the correct capture device by checking Entity Info with v4l2-ctl.
+	e.g.
+	    $ v4l2-ctl -d /dev/video2 -all
+	    ...
+	    Entity Info:
+		ID               : 0x00000013 (19)
+		Name             : mxc_isi.0.capture
+	    ...
 
     v4l2h264dec:
 	gst-launch-1.0 filesrc location=sample-5s.mp4 ! qtdemux name=d d.video_0 ! queue ! h264parse ! v4l2h264dec ! imxvideoconvert_g2d ! queue ! waylandsink
