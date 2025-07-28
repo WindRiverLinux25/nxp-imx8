@@ -177,6 +177,8 @@ Please use dtbs that support CSI, just like imx8qm-mek-ov5640-csi0.dtb.
 Before using the VPU, we need to configure the media pipeline with media-ctl.
 You can use the following script on target for quick setup.
 
+1. To enable CSI0 with imx8qm-mek-ov5640-csi0.dtb:
+
 $ cat << 'EOF' > ov5640_csi0.sh
 #!/bin/sh -x
 
@@ -199,6 +201,33 @@ media-ctl -d${MDEV} -V "'crossbar':6 [fmt:UYVY/${W}x${H} field:none]"
 media-ctl -d${MDEV} -V "'mxc_isi.0':0 [compose:(0,0)/${W}x${H}]"
 media-ctl -d${MDEV} -V "'mxc_isi.0':0 [fmt:UYVY/${W}x${H} field:none]"
 media-ctl -d${MDEV} -V "'mxc_isi.0':1 [fmt:UYVY/${W}x${H} field:none]"
+
+EOF
+
+2. To enable CSI1 with imx8qm-mek-ov5640-csi1.dtb:
+
+$ cat << 'EOF' > ov5640_csi1.sh
+#!/bin/sh -x
+
+MDEV=${1:-1}
+CAMERA="ov5640 2-003c"
+W=1920
+H=1080
+
+media-ctl -d${MDEV} -r
+
+media-ctl -d${MDEV} -R "'crossbar' [3/0 -> 7/0 [1]]"
+media-ctl -d${MDEV} -l "'${CAMERA}':0 -> 'imx8mq-mipi-csi2 58247000.csi':0 [1]"
+media-ctl -d${MDEV} -l "'crossbar':7 -> 'mxc_isi.1':0 [1]"
+media-ctl -d${MDEV} -l "'mxc_isi.1':1 -> 'mxc_isi.1.capture':0 [1]"
+
+media-ctl -d${MDEV} -V "'${CAMERA}':0 [fmt:UYVY/${W}x${H} field:none]"
+media-ctl -d${MDEV} -V "'imx8mq-mipi-csi2 58247000.csi':0 [fmt:UYVY/${W}x${H} field:none]"
+media-ctl -d${MDEV} -V "'crossbar':3 [fmt:UYVY/${W}x${H} field:none]"
+media-ctl -d${MDEV} -V "'crossbar':7 [fmt:UYVY/${W}x${H} field:none]"
+media-ctl -d${MDEV} -V "'mxc_isi.1':0 [compose:(0,0)/${W}x${H}]"
+media-ctl -d${MDEV} -V "'mxc_isi.1':0 [fmt:UYVY/${W}x${H} field:none]"
+media-ctl -d${MDEV} -V "'mxc_isi.1':1 [fmt:UYVY/${W}x${H} field:none]"
 
 EOF
 
