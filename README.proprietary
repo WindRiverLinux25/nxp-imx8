@@ -38,8 +38,6 @@ PREFERRED_VERSION_opencv:mx8 = "4.10.0.imx"
 
 LICENSE_FLAGS_ACCEPTED += "commercial"
 
-PREFERRED_VERSION_xwayland:mx8                  = "24.1.6.imx"
-
 DISTRO_FEATURES:remove = "directfb "
 DISTRO_FEATURES:append = " wayland pam"
 
@@ -140,7 +138,6 @@ CUSTOMER_RECIPES:openembedded-layer += 'tbb'
 CUSTOMER_RECIPES:multimedia-layer += 'gst-shark'
 CUSTOMER_RECIPES:fsl-sdk-release += 'libxdg-shell'
 CUSTOMER_RECIPES:freescale-layer += 'mxsldr'
-CUSTOMER_RECIPES:freescale-layer += 'xwayland'
 CUSTOMER_RECIPES:freescale-layer += 'libimxdmabuffer'
 CUSTOMER_RECIPES:freescale-layer += 'imx-usb-loader'
 CUSTOMER_RECIPES:openembedded-layer += 'fftw'
